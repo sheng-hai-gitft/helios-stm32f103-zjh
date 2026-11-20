@@ -1,0 +1,23 @@
+{
+    // 使用前：1) 先执行任务「STM32: 烧录 (ST-Link)」；
+    //        2) 再执行任务「STM32: 启动 GDB Server」；
+    //        3) 按 F5 选择下面的附加配置。
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "STM32 附加调试 (ST-Link)",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/Framework/BSP/build/helios_f103",
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gdb.exe",
+            "miDebuggerServerAddress": "127.0.0.1:61234",
+            "setupCommands": [
+                { "description": "停止目标，准备下断点", "text": "monitor halt", "ignoreFailures": true },
+                { "description": "让 GDB 认识 ELF 符号", "text": "file \"${workspaceFolder}/Framework/BSP/build/helios_f103\"", "ignoreFailures": false },
+                { "description": "复位并停在复位向量", "text": "monitor reset halt", "ignoreFailures": true }
+            ]
+        }
+    ]
+}

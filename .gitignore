@@ -1,0 +1,13 @@
+# 编译输出
+build/
+*.o
+*.d
+*.map
+*.hex
+*.bin
+*.elf
+
+# IDE / 工具
+.devkit/
+.eide/
+.vs/

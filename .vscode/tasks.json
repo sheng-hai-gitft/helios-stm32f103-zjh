@@ -1,0 +1,76 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "cwd": "${workspaceFolder}"
+    },
+    "tasks": [
+        {
+            "label": "STM32: 配置 (CMake)",
+            "type": "process",
+            "command": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cmake.win32_1.1.200.202605190741/tools/bin/cmake.exe",
+            "args": [
+                "-S", "${workspaceFolder}/Framework/BSP",
+                "-B", "${workspaceFolder}/Framework/BSP/build",
+                "-G", "Ninja",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_MAKE_PROGRAM=C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.ninja.win32_1.1.200.202606260906/tools/bin/ninja.exe"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "STM32: 编译",
+            "type": "process",
+            "command": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cmake.win32_1.1.200.202605190741/tools/bin/cmake.exe",
+            "args": ["--build", "${workspaceFolder}/Framework/BSP/build"],
+            "dependsOn": ["STM32: 配置 (CMake)"],
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "STM32: 重新编译",
+            "type": "process",
+            "command": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cmake.win32_1.1.200.202605190741/tools/bin/cmake.exe",
+            "args": ["--build", "${workspaceFolder}/Framework/BSP/build", "--clean-first"],
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "STM32: 烧录 (ST-Link)",
+            "type": "process",
+            "command": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.500.202603051304/tools/bin/STM32_Programmer_CLI.exe",
+            "args": [
+                "-c", "port=SWD", "mode=UR",
+                "-w", "${workspaceFolder}\\Framework\\BSP\\build\\helios_f103.hex",
+                "-v", "-rst"
+            ],
+            "dependsOn": ["STM32: 编译"],
+            "problemMatcher": []
+        },
+        {
+            "label": "STM32: 擦除芯片",
+            "type": "process",
+            "command": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.500.202603051304/tools/bin/STM32_Programmer_CLI.exe",
+            "args": ["-c", "port=SWD", "mode=UR", "-e", "all"],
+            "problemMatcher": []
+        },
+        {
+            "label": "STM32: 启动 GDB Server",
+            "type": "process",
+            "command": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.2.500.202604010938/tools/bin/ST-LINK_gdbserver.exe",
+            "args": [
+                "-p", "61234",
+                "-cp", "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.500.202603051304/tools/bin",
+                "-d"
+            ],
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "STM32: 停止 GDB Server",
+            "type": "process",
+            "command": "taskkill",
+            "args": ["/F", "/IM", "ST-LINK_gdbserver.exe"],
+            "problemMatcher": []
+        }
+    ]
+}

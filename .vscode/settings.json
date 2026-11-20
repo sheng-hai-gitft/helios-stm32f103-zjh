@@ -1,0 +1,50 @@
+{
+    "workbench.colorCustomizations": {
+        "sideBar.background": "#1f2329",
+        "activityBar.background": "#2A2E37",
+        "titleBar.activeBackground": "#2A2E37",
+        "editor.background": "#181B20",
+        "terminal.background": "#181B20",
+        "panel.background": "#181B20",
+        "dropdown.background": "#181B20",
+        "dropdown.listBackground": "#181B20",
+        "editorGroupHeader.tabsBackground": "#1F2229",
+        "tab.inactiveBackground": "#23282E",
+        "menu.background": "#2A2F37",
+        "menu.selectionBackground": "#0E629D"
+    },
+    "chat.disableAIFeatures": true,
+
+    // ================= CMake Tools（源码目录 = Framework/BSP） =================
+    "cmake.sourceDirectory": "${workspaceFolder}/Framework/BSP",
+    "cmake.buildDirectory": "${workspaceFolder}/Framework/BSP/build",
+    "cmake.generator": "Ninja",
+    "cmake.buildType": "Debug",
+    "cmake.configureOnOpen": true,
+    "cmake.configureArgs": [
+        "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/Framework/BSP/cmake/gcc-arm-none-eabi.cmake",
+        "-DCMAKE_MAKE_PROGRAM=C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.ninja.win32_1.1.200.202606260906/tools/bin/ninja.exe"
+    ],
+    "cmake.showOptionsSettings": false,
+
+    // ================= IntelliSense =================
+    "C_Cpp.default.compilerPath": "C:/ST/STM32CubeIDE_2.2.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740/tools/bin/arm-none-eabi-gcc.exe",
+    "C_Cpp.default.intelliSenseMode": "gcc-arm",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+
+    // ================= 终端里能直接用工具链命令 =================
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\ST\\STM32CubeIDE_2.2.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.win32_1.0.100.202602081740\\tools\\bin;C:\\ST\\STM32CubeIDE_2.2.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cmake.win32_1.1.200.202605190741\\tools\\bin;C:\\ST\\STM32CubeIDE_2.2.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.ninja.win32_1.1.200.202606260906\\tools\\bin;C:\\ST\\STM32CubeIDE_2.2.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.500.202603051304\\tools\\bin;C:\\ST\\STM32CubeIDE_2.2.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.2.500.202604010938\\tools\\bin;${env:PATH}"
+    },
+
+    // ================= 文件关联 =================
+    "files.associations": {
+        "*.ld": "linker",
+        "*.s": "asm"
+    },
+    "search.exclude": {
+        "**/build": true
+    },
+    "C_Cpp.errorSquiggles": "enabled"
+}
